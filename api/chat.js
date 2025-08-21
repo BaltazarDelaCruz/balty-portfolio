@@ -27,31 +27,30 @@ export default async function handler(req, res) {
 
   try {
     const { message } = req.body;
+    if (!message) return res.status(400).json({ error: "No message provided" });
 
-    if (!message) {
-      return res.status(400).json({ error: "No message provided" });
-    }
-
-    // Call Gemini API
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateMessage?key=${process.env.GEMINI_API_KEY}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          prompt: {
-            context: systemPrompt,
-            messages: [{ author: "user", content: message }],
-          },
+          // Using messages array with 'system' + 'user'
+          messages: [
+            { author: "system", content: [{ type: "text", text: systemPrompt }] },
+            { author: "user", content: [{ type: "text", text: message }] },
+          ],
+          temperature: 0.7,
         }),
       }
     );
 
     const data = await response.json();
 
-    return res.status(200).json({
-      reply: data.candidates?.[0]?.content?.[0]?.text || "❌ No response",
-    });
+    // Gemini response is usually under 'candidates'
+    const reply = data.candidates?.[0]?.content?.[0]?.text || "❌ No response";
+
+    return res.status(200).json({ reply });
   } catch (err) {
     console.error("Chat error:", err);
     return res.status(500).json({ reply: "❌ Backend error" });
