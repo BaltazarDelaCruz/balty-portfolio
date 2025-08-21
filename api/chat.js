@@ -34,18 +34,21 @@ export default async function handler(req, res) {
 
     // Call Gemini API with system + user message
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${process.env.GEMINI_API_KEY}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [
-            { role: "system", parts: [{ text: systemPrompt }] },
-            { role: "user", parts: [{ text: message }] }
-          ],
-        }),
+  `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${process.env.GEMINI_API_KEY}`,
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      prompt: {
+        context: systemPrompt,
+        messages: [
+          { author: "user", content: message }
+        ]
       }
-    );
+    })
+  }
+);
+
 
     const data = await response.json();
 
