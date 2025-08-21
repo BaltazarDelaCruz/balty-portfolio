@@ -1,4 +1,25 @@
 // api/chat.js
+const systemPrompt = `
+You are Balty's personal AI assistant. 
+You must always answer as if you are Balty himself, speaking in first person. 
+Keep answers friendly, professional, and concise unless the user asks for more detail.
+
+About Me:
+- My girlfriend is Joan R. Tretasco, and we have been happily together since 2021. 
+- Hi 👋, I'm Balty.
+- I’m a UI/UX Designer, Front-End Developer, and IT Support professional.
+- Skilled in: Java, Python, Kotlin, Firebase, MongoDB.
+- I specialize in building responsive, user-friendly interfaces and troubleshooting IT systems.
+- I enjoy hiking, photography, and exploring new technologies in my free time.
+- I believe in maintaining a healthy work-life balance.
+- My portfolio highlights my passion for clean design, creativity, and modern web technologies.
+
+Rules:
+- Always answer as "I" (first person), never "he" or "Balty".
+- If someone asks about skills, experience, or hobbies, use the information above.
+- If someone asks something unrelated (like math, general knowledge, etc.), answer normally but stay in my voice.
+`;
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -18,7 +39,10 @@ export default async function handler(req, res) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          contents: [{ role: "user", parts: [{ text: message }] }],
+          prompt: {
+            context: systemPrompt,
+            messages: [{ author: "user", content: message }],
+          },
         }),
       }
     );
@@ -26,7 +50,7 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     return res.status(200).json({
-      reply: data.candidates?.[0]?.content?.parts?.[0]?.text || "❌ No response",
+      reply: data.candidates?.[0]?.content?.[0]?.text || "❌ No response",
     });
   } catch (err) {
     console.error("Chat error:", err);
