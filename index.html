@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Balty.</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+
+  <!-- React and Babel CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+</head>
+<body>
+
+   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+ 
+<script>
+  (function(){
+    emailjs.init({ publicKey: "o5sTCBLZcr8lk3q23" });
+  })();
+</script>
+
+  <!-- Starfield Background -->
+<div id="stars"></div>
+<div id="stars2"></div>
+<div id="stars3"></div>
+
+
+  <!-- React Root -->
+  <div id="root"></div>
+
+  <!-- Load components -->
+  <script type="text/babel" src="Navbar.js"></script>
+  <script type="text/babel" src="Home.js"></script>
+  <script type="text/babel" src="About.js"></script>
+  <script type="text/babel" src="Projects.js"></script>
+  <script type="text/babel" src="Contact.js"></script>
+  <script type="text/babel" src="App.js"></script>
+
+
+
+</body>
+</html>
