@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 function Home() {
   const [messages, setMessages] = React.useState([
     { sender: "ai", text: "Hello 👋, how can I help?" }
@@ -189,7 +189,7 @@ function Home() {
     </section>
   );
 }
-=======
+
 function Home() {
   const [messages, setMessages] = React.useState([
     { sender: "ai", text: "Hello 👋, how can I help?" }
@@ -380,4 +380,4 @@ function Home() {
     </section>
   );
 }
->>>>>>> f31bf75 (Initial commit)
+
