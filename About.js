@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 function About() {
   const [openCat, setOpenCat] = React.useState(null);
 
@@ -143,7 +143,8 @@ function About() {
     </section>
   );
 }
-=======
+
+
 function About() {
   const [openCat, setOpenCat] = React.useState(null);
 
@@ -288,4 +289,4 @@ function About() {
     </section>
   );
 }
->>>>>>> f31bf75 (Initial commit)
+
