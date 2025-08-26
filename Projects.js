@@ -37,10 +37,16 @@ function Projects() {
     },
     {
       title: "Weather App with Map",
-description: "A responsive weather application built with React (CDN), Tailwind CSS, and Leaflet.js. It allows users to search for cities, view real-time weather details from WeatherAPI.com, and see the exact location on an interactive map. Features include neumorphic UI design, autocomplete suggestions, and live date & time display.",
-link: "https://baltazardelacruz.github.io/weather/",
-image: "/image/weather.png"
+      description: "A responsive weather application built with React (CDN), Tailwind CSS, and Leaflet.js. It allows users to search for cities, view real-time weather details from WeatherAPI.com, and see the exact location on an interactive map. Features include neumorphic UI design, autocomplete suggestions, and live date & time display.",
+      link: "https://baltazardelacruz.github.io/weather/",
+      image: "/image/weather.png"
 
+    },
+    {
+      title: "Currency Converter",
+      description: "A responsive currency converter built with React (CDN) and Tailwind CSS. It allows users to convert between multiple currencies using real-time exchange rates from Open Exchange Rate APIs. Features include a neumorphic UI design, light/dark mode toggle, interactive conversion history, and live chart display for visualizing trends.",
+      link: "https://baltazardelacruz.github.io/currency/",
+      image: "/image/currency.png"
     }
   ];
 
