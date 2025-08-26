@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 function Contact() {
 const formRef = React.useRef();
   const [isLoading, setIsLoading] = React.useState(false);
@@ -119,7 +119,8 @@ const formRef = React.useRef();
     
   );
 }
-=======
+
+
 function Contact() {
 const formRef = React.useRef();
   const [isLoading, setIsLoading] = React.useState(false);
@@ -243,4 +244,4 @@ const formRef = React.useRef();
     
   );
 }
->>>>>>> f31bf75 (Initial commit)
+
