@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 function Navbar() {
   const handleScrollClick = (id) => {
     const element = document.getElementById(id);
@@ -37,7 +37,8 @@ function Navbar() {
     </nav>
   );
 }
-=======
+
+
 function Navbar() {
   const handleScrollClick = (id) => {
     const element = document.getElementById(id);
@@ -76,4 +77,4 @@ function Navbar() {
     </nav>
   );
 }
->>>>>>> f31bf75 (Initial commit)
+
