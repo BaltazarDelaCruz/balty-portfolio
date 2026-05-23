@@ -25,6 +25,46 @@ export default function AdminProjects() {
     navigate(`/admin/projects/edit/${projectId}`)
   }
 
+  async function handleDeleteProject(projectId, projectTitle) {
+    if (!window.confirm(`Are you sure you want to delete "${projectTitle}"? This cannot be undone.`)) {
+      return
+    }
+
+    try {
+      const { client } = await import('../lib/sanity')
+      await client.delete(projectId)
+      
+      // Refresh the projects list
+      setProjects(projects.filter(p => p._id !== projectId))
+      
+      // Show success message
+      if (window.Swal) {
+        window.Swal.fire({
+          title: 'Deleted!',
+          text: 'Project has been deleted.',
+          icon: 'success',
+          timer: 2000,
+          showConfirmButton: false,
+          background: '#0b1020',
+          color: '#e8edf8',
+        })
+      }
+    } catch (error) {
+      console.error('Error deleting project:', error)
+      if (window.Swal) {
+        window.Swal.fire({
+          title: 'Error!',
+          text: 'Failed to delete project. Please try again.',
+          icon: 'error',
+          background: '#0b1020',
+          color: '#e8edf8',
+        })
+      } else {
+        alert('Failed to delete project. Please try again.')
+      }
+    }
+  }
+
   if (loading) {
     return <div className="admin-loading"><div className="spinner-large"></div></div>
   }
@@ -126,6 +166,15 @@ export default function AdminProjects() {
                           </svg>
                         </button>
                       )}
+                      <button 
+                        className="admin-icon-btn admin-icon-btn-danger"
+                        onClick={() => handleDeleteProject(project._id, project.title)}
+                        title="Delete"
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6"/>
+                        </svg>
+                      </button>
                     </div>
                   </td>
                 </tr>
