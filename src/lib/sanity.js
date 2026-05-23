@@ -7,6 +7,7 @@ export const client = createClient({
   dataset: 'production',
   useCdn: true, // set to `false` to bypass the edge cache
   apiVersion: '2024-01-01', // use current date (YYYY-MM-DD) to target the latest API version
+  token: import.meta.env.VITE_SANITY_TOKEN, // Add write token for mutations
 })
 
 // Helper function to generate image URLs

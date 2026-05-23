@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { fetchData, queries, urlFor } from '../lib/sanity'
 
 export default function AdminProjects() {
+  const navigate = useNavigate()
   const [projects, setProjects] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -15,8 +17,12 @@ export default function AdminProjects() {
     setLoading(false)
   }
 
-  function openSanityStudio() {
-    window.open('http://localhost:3333/structure/project', '_blank')
+  function openAddProject() {
+    navigate('/admin/projects/new')
+  }
+
+  function openEditProject(projectId) {
+    navigate(`/admin/projects/edit/${projectId}`)
   }
 
   if (loading) {
@@ -30,7 +36,7 @@ export default function AdminProjects() {
           <h1 className="admin-page-title">Projects</h1>
           <p className="admin-page-subtitle">Manage your portfolio projects</p>
         </div>
-        <button className="btn-admin-primary" onClick={openSanityStudio}>
+        <button className="btn-admin-primary" onClick={openAddProject}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M12 5v14M5 12h14"/>
           </svg>
@@ -45,7 +51,7 @@ export default function AdminProjects() {
           </svg>
           <h3>No projects yet</h3>
           <p>Start by adding your first project</p>
-          <button className="btn-admin-primary" onClick={openSanityStudio}>
+          <button className="btn-admin-primary" onClick={openAddProject}>
             Add Your First Project
           </button>
         </div>
@@ -101,7 +107,7 @@ export default function AdminProjects() {
                     <div className="admin-table-actions">
                       <button 
                         className="admin-icon-btn"
-                        onClick={() => window.open(`http://localhost:3333/structure/project;${project._id}`, '_blank')}
+                        onClick={() => openEditProject(project._id)}
                         title="Edit"
                       >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
