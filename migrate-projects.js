@@ -1,5 +1,9 @@
 // Migration script to import existing projects into Sanity CMS
 import { createClient } from '@sanity/client'
+import dotenv from 'dotenv'
+
+// Load environment variables from .env file
+dotenv.config()
 
 const client = createClient({
   projectId: '7bkfx0pl',
