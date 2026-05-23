@@ -5,7 +5,7 @@ import imageUrlBuilder from '@sanity/image-url'
 export const client = createClient({
   projectId: '7bkfx0pl', // Your Sanity project ID
   dataset: 'production',
-  useCdn: true, // set to `false` to bypass the edge cache
+  useCdn: false, // Disable CDN to get fresh data
   apiVersion: '2024-01-01', // use current date (YYYY-MM-DD) to target the latest API version
   token: import.meta.env.VITE_SANITY_TOKEN || undefined, // Only needed for write operations
 })
